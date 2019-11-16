@@ -1,6 +1,6 @@
 FROM alpine:3.10
 LABEL Maintainer="crossRT <crossRT@gmail.com>" \
-      Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.3 based on Alpine Linux."
+      Description="Docker image ready for Laravel"
 
 # Install packages
 RUN apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
