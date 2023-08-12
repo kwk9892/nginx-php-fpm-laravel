@@ -11,7 +11,7 @@ Thus I decide to clone this repo and customize it further to suit for my laravel
 * I like to `envsub` to generate the `.env` when starting the container.
 
 ## What's included
-* alpine 3.13
+* alpine 3.13.12
 * nginx 1.8
 * php-fpm 7.4
 * php extensions to run laravel: php7-pdo php7-pdo_mysql php7-tokenizer php7-fileinfo

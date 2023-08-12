@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.13.12
 LABEL Maintainer="crossRT <crossRT@gmail.com>" \
       Description="Docker image ready for Laravel"
 
