@@ -1,13 +1,12 @@
-FROM alpine:3.13.12
+FROM alpine:3.18.3
 LABEL Maintainer="crossRT <crossRT@gmail.com>" \
-      Description="Docker image ready for Laravel"
+  Description="Docker image ready for Laravel"
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
-    php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype php7-session \
-    php7-pdo php7-pdo_mysql php7-tokenizer php7-fileinfo bash nano gettext \
-    php7-mbstring php7-gd nginx supervisor curl && \
-    rm /etc/nginx/conf.d/default.conf
+RUN apk --no-cache add php php-fpm php-opcache php-mysqli php-json php-openssl php-curl \
+  php-zlib php-xml php-phar php-intl php-dom php-xmlreader php-ctype php-session \
+  php-pdo php-pdo_mysql php-tokenizer php-fileinfo bash nano gettext \
+  php-mbstring php-gd nginx supervisor curl
 
 # copy profile with some useful alias
 COPY config/profile /.bashrc
@@ -16,8 +15,8 @@ COPY config/profile /.bashrc
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY config/php.ini /etc/php7/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php/php-fpm.d/www.conf
+COPY config/php.ini /etc/php/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -29,7 +28,8 @@ RUN mkdir -p /var/www/html
 RUN chown -R nobody.nobody /var/www/html && \
   chown -R nobody.nobody /run && \
   chown -R nobody.nobody /var/lib/nginx && \
-  chown -R nobody.nobody /var/log/nginx
+  chown -R nobody.nobody /var/log/nginx && \
+  chown -R nobody.nobody /var/log/php81/
 
 # Switch to use a non-root user from here on
 USER nobody

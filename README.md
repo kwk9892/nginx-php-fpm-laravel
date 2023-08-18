@@ -11,10 +11,10 @@ Thus I decide to clone this repo and customize it further to suit for my laravel
 * I like to `envsub` to generate the `.env` when starting the container.
 
 ## What's included
-* alpine 3.13.12
-* nginx 1.8
-* php-fpm 7.4
-* php extensions to run laravel: php7-pdo php7-pdo_mysql php7-tokenizer php7-fileinfo
+* alpine 3.18.3
+* nginx 1.24.0
+* php-fpm 8.1.22
+* php extensions to run laravel: php-pdo php-pdo_mysql php-tokenizer php-fileinfo
 * linux binary I like to use: bash nano gettext
 * alias ls='ls -lh' by default
 
@@ -39,3 +39,9 @@ RUN rm -rf /var/www/html/storage/framework/views/*
 # which update your .env with container environments.
 CMD /var/www/html/docker/init.sh
 ```
+
+### Versions
+|image tag| alpine | php | nginx |
+|--|--|--|--|
+|alpine3.18-php8.1|3.18.3|8.1.22|1.24.0|
+|alpine3.13-php7.4|3.13.12|7.4.26|1.18.0|
