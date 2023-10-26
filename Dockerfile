@@ -3,10 +3,24 @@ LABEL Maintainer="crossRT <crossRT@gmail.com>" \
   Description="Docker image ready for Laravel"
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php php-fpm php-opcache php-mysqli php-json php-openssl php-curl \
-  php-zlib php-xml php-phar php-intl php-dom php-xmlreader php-ctype php-session \
-  php-pdo php-pdo_mysql php-tokenizer php-fileinfo bash nano gettext \
-  php-mbstring php-gd nginx supervisor curl
+RUN apk --no-cache add php81 php81-fpm php81-opcache php81-mysqli php81-json php81-openssl php81-curl \
+  php81-zlib php81-xml php81-phar php81-intl php81-dom php81-xmlreader php81-ctype php81-session php81-posix \
+  php81-pdo php81-pdo_mysql php81-tokenizer php81-fileinfo bash nano gettext \
+  php81-mbstring php81-gd php81-pcntl nginx supervisor curl \
+  php81-xmlwriter php81-zip php81-simplexml php81-iconv \
+  php81-dev php81-pear gcc musl-dev make
+
+# install phpredis
+RUN printf "\n" | pecl install redis
+RUN apk del php81-dev php81-pear gcc musl-dev make --quiet
+RUN echo "extension=redis.so" >> /etc/php81/conf.d/redis.ini
+RUN rm -rf /tmp/*
+
+# install dcron
+RUN apk add --no-cache dcron libcap
+RUN chown nobody:nobody /usr/sbin/crond
+RUN setcap cap_setgid=ep /usr/sbin/crond
+RUN chown -R nobody:nobody /var/spool/cron/crontabs/
 
 # copy profile with some useful alias
 COPY config/profile /.bashrc
@@ -15,8 +29,8 @@ COPY config/profile /.bashrc
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php/php-fpm.d/www.conf
-COPY config/php.ini /etc/php/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php81/php-fpm.d/www.conf
+COPY config/php.ini /etc/php81/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
