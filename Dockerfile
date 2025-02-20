@@ -8,7 +8,7 @@ RUN apk --no-cache add php83 php83-fpm php83-opcache php83-mysqli php83-json php
   php83-pdo php83-pdo_mysql php83-tokenizer php83-fileinfo bash nano gettext \
   php83-mbstring php83-gd php83-pcntl nginx supervisor curl \
   php83-xmlwriter php83-zip php83-simplexml php83-iconv \
-  php83-dev php83-pear php83-pecl-redis \
+  php83-dev php83-pear php83-pecl-redis php8-bcmath \
   gcc musl-dev make
 
 # install dcron
