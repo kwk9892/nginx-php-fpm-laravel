@@ -43,6 +43,7 @@ CMD /var/www/html/docker/init.sh
 ### Versions
 |image tag| alpine | php | nginx | notes |
 |--|--|--|--| -- |
+|alpine3.19-php8.3-3|3.19.1|8.3.14|1.24.0| add bcmath extension
 |alpine3.18-php8.1-6|3.18.3|8.1.22|1.24.0| add dcron
 |alpine3.18-php8.1-5|3.18.3|8.1.22|1.24.0| add php81-xmlwriter php81-zip php81-simplexml php81-iconv
 |alpine3.18-php8.1-2|3.18.3|8.1.22|1.24.0| add php81-pcntl
